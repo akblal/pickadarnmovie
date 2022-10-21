@@ -1,6 +1,6 @@
 import React, { useState }from 'react';
 
-function SignIn () {
+function SignIn ({ changePage }) {
 
   const [email, setEmail] = useState('');
 
@@ -20,6 +20,7 @@ function SignIn () {
 
   const confirmNewUser = (e) => {
     console.log ('clicked created user button')
+    changePage('create-user');
   }
 
   return (
@@ -35,7 +36,7 @@ function SignIn () {
         </div>
         <div className= 'sign-in-buttons-container'>
           <button onClick= {confirmEmail} className= 'sign-in-continue-button'>Continue</button>
-          <button onClick= {confirmNewUser} className= 'sign-in-create-user-button'>Create User</button>
+          <button onClick= {confirmNewUser} className= 'sign-in-create-user-button'>Create Account</button>
         </div>
         <div className= 'sign-in-privacy-policy-container'>
           <h3>Privacy Policy</h3>

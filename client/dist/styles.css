@@ -7,7 +7,8 @@
   border-color: black;
 }
 
-.sign-in-container {
+.sign-in-container,
+.user-creation-container {
   border: solid;
   border-width: 1px;
   border-color: black;
@@ -50,4 +51,10 @@
 .sign-in-privacy-policy-container {
   display: flex;
   justify-content: center;
+}
+
+.user-creation-name-fields-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
 }
