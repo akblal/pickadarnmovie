@@ -25,9 +25,10 @@ function SignIn () {
   return (
     <div className= 'center-screen'>
       <div className= 'sign-in-container'>
-        <h1>Sign Into PickaDamnMovie</h1>
+        <h1 className= 'sign-in-logo'>pickadamnmovie</h1>
+        <h1 className= 'sign-in-title'>Sign Into PickaDamnMovie</h1>
         <div className= 'sign-in-email-container'>
-          <h2>Email:</h2>
+          <div>Email:</div>
           <form onSubmit= {handleEmailKeyboard}>
             <input type= 'text' className= 'sign-in-email-field' value= {email} onChange= {handleEmail}/>
           </form>
