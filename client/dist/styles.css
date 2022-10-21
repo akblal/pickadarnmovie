@@ -17,6 +17,8 @@
   padding-bottom: 40px;
   padding-left: 40px;
   padding-right: 40px;
+  max-width: 403px;
+  max-height: 460px;
 }
 
 .sign-in-logo {
@@ -27,17 +29,25 @@
   margin-bottom: 40px;
 }
 
-.sign-in-email-field {
+.sign-in-email-field,
+.user-creation-email-field,
+.user-creation-password-field {
   width: 392px;
 }
 
 .sign-in-continue-button,
-.sign-in-create-user-button {
+.sign-in-create-user-button,
+.user-creation-create-button {
   width: 400px;
 }
 .sign-in-continue-button,
 .sign-in-create-user-button,
-.sign-in-email-field {
+.sign-in-email-field,
+.user-creation-first-name-field,
+.user-creation-last-name-field,
+.user-creation-email-field,
+.user-creation-password-field,
+.user-creation-create-button{
   height: 50px;
   margin-bottom: 10px;
 }
@@ -48,7 +58,8 @@
   justify-content: center;
 }
 
-.sign-in-privacy-policy-container {
+.sign-in-privacy-policy-container,
+.user-creation-create-button-container {
   display: flex;
   justify-content: center;
 }
@@ -57,4 +68,21 @@
   display: flex;
   justify-content: space-evenly;
   flex-direction: row;
+}
+
+.user-creation-first-name-field,
+.user-creation-last-name-field {
+  width: 181px;
+}
+
+.user-creation-first-name-container {
+  margin-right: 10px;
+}
+
+.user-creation-last-name-container {
+  margin-left: 10px;
+}
+
+.user-creation-certification-container {
+  margin-bottom: 10px;
 }

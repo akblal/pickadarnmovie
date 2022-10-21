@@ -1,11 +1,16 @@
 import React, { useState }from 'react';
 
-function UserCreation () {
+function UserCreation ({ changePage }) {
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const handleBack = (e) => {
+    console.log ('back button clicked!')
+    changePage('sign-in');
+  }
 
   const handleFirstName = (e) => {
     let text = e.target.value;
@@ -40,6 +45,11 @@ function UserCreation () {
   return (
     <div className= 'center-screen'>
       <div className= 'user-creation-container'>
+
+        <div className= 'user-creation-back-button-container'>
+          <button className= 'user-creation-back-button' onClick= {handleBack}>Back</button>
+        </div>
+
         <h1 className= 'user-creation-title'>Create An Account</h1>
         <div className= 'user-creation-fields-container'>
 
@@ -48,9 +58,9 @@ function UserCreation () {
               <div className= 'user-creation-first-name-title'>
                 First Name:
               </div>
-              <div className= 'user-creation-first-name-field'>
+              <div className= 'user-creation-first-name-field-container'>
                 <form onSubmit= {handleKeyboard}>
-                  <input type= 'text' className= 'first-name-field' value= {firstName} onChange= {handleFirstName} />
+                  <input type= 'text' className= 'user-creation-first-name-field' value= {firstName} onChange= {handleFirstName} />
                 </form>
               </div>
             </div>
@@ -58,9 +68,9 @@ function UserCreation () {
               <div className= 'user-creation-last-name-title'>
                 Last Name:
               </div>
-              <div className= 'user-creation-last-name-field'>
+              <div className= 'user-creation-last-name-field-container'>
                 <form onSubmit= {handleKeyboard}>
-                  <input type= 'text' className= 'first-name-field' value= {lastName} onChange= {handleLastName} />
+                  <input type= 'text' className= 'user-creation-last-name-field' value= {lastName} onChange= {handleLastName} />
                 </form>
               </div>
             </div>
@@ -70,9 +80,9 @@ function UserCreation () {
             <div className= 'user-creation-email-title'>
               Email:
             </div>
-            <div className= 'user-creation-email-field'>
+            <div className= 'user-creation-email-field-container'>
               <form onSubmit= {handleKeyboard}>
-                <input type= 'text' className= 'email-field' value= {email} onChange= {handleEmail} />
+                <input type= 'text' className= 'user-creation-email-field' value= {email} onChange= {handleEmail} />
               </form>
             </div>
           </div>
@@ -81,9 +91,9 @@ function UserCreation () {
             <div className= 'user-creation-password-title'>
               Password:
             </div>
-            <div className= 'user-creation-password-field'>
+            <div className= 'user-creation-password-field-container'>
               <form onSubmit= {handleKeyboard}>
-                <input type= 'text' className= 'password-field' value= {password} onChange= {handlePassword} />
+                <input type= 'text' className= 'user-creation-password-field' value= {password} onChange= {handlePassword} />
               </form>
             </div>
           </div>
@@ -94,8 +104,8 @@ function UserCreation () {
             </div>
           </div>
 
-          <div className= 'user-creation-button-container'>
-            <button className= 'user-creation-button' onClick= {handleSubmit}>Create Free Account</button>
+          <div className= 'user-creation-create-button-container'>
+            <button className= 'user-creation-create-button' onClick= {handleSubmit}>Create Free Account</button>
           </div>
 
         </div>

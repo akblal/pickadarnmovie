@@ -8,8 +8,6 @@ import UserCreation from './components/UserCreation.jsx';
 const container = document.getElementById('root');
 const root = createRoot(container);
 
-
-
 function App (props) {
 
   const [pageNumber, setPageNumber] = useState('sign-in');
@@ -25,7 +23,7 @@ function App (props) {
       }
 
       {pageNumber === 'create-user' &&
-        <UserCreation />
+        <UserCreation changePage= {changePage}/>
       }
 
     </div>
