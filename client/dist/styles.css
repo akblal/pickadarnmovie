@@ -1,0 +1,45 @@
+.center-screen {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  border-color: black;
+}
+
+.sign-in-container {
+  border: solid;
+  border-width: 1px;
+  border-color: black;
+  border-radius: 25%;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.sign-in-email-field {
+  width: 392px;
+}
+
+.sign-in-continue-button,
+.sign-in-create-user-button {
+  width: 400px;
+}
+.sign-in-continue-button,
+.sign-in-create-user-button,
+.sign-in-email-field {
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.sign-in-buttons-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.sign-in-privacy-policy-container {
+  display: flex;
+  justify-content: center;
+}
