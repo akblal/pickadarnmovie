@@ -14,7 +14,7 @@ function Authentication ({ changePage }) {
 
   const shareCode = (e) => {
     console.log ('button pressed')
-    if (userInput.length === 4) {
+    if (userInput.length === lengthCode) {
       verifyCode();
     }
 
@@ -122,7 +122,7 @@ function Authentication ({ changePage }) {
           </div>
         </div>
         <div className= 'password-button-container' onMouseDown= {shareCode} onMouseUp = {hideCode}>
-          {userInput.length === 4 ?
+          {userInput.length === lengthCode ?
             <button className= 'password-continue-button' onClick= {verifyCode}>Enter</button> :
             showCode ?
               <div className= 'password-auth-code'>{randomNumber}</div> :
