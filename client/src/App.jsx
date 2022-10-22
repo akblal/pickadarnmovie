@@ -36,6 +36,10 @@ function App (props) {
         <Authentication changePage= {changePage}/>
       }
 
+      {pageNumber === 'finished' &&
+        <SignIn changePage= {changePage}/>
+      }
+
     </div>
   )
 }

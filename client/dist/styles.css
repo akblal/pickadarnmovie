@@ -14,10 +14,10 @@
   border-width: 1px;
   border-color: black;
   border-radius: 5%;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding-top: 70px;
+  padding-bottom: 70px;
+  padding-left: 50px;
+  padding-right: 50px;
   max-width: 403px;
   max-height: 460px;
 }
@@ -44,7 +44,8 @@
 .sign-in-continue-button,
 .sign-in-create-user-button,
 .user-creation-create-button,
-.password-continue-button {
+.password-continue-button,
+.password-auth-code {
   width: 400px;
 }
 .sign-in-continue-button,
@@ -56,7 +57,8 @@
 .user-creation-password-field,
 .user-creation-create-button,
 .password-continue-button,
-.password-page-password-field{
+.password-page-password-field,
+.password-auth-code{
   height: 50px;
   margin-bottom: 10px;
 }
@@ -110,11 +112,9 @@
   width: 357px;
 }
 
-.icon-and-email-container:hover {
-  cursor: pointer;
-}
-
-.icon-and-email-container:active{
+.icon-and-email-container:hover,
+.icon-and-email-container:active,
+.auth-individual-button-container{
   cursor: pointer;
 }
 
@@ -124,9 +124,10 @@
   justify-content: center;
 }
 
-.auth-first-row-button-container,
+.auth-first-row-buttons-container,
 .auth-second-row-button-container,
-.auth-third-row-button-container {
+.auth-third-row-button-container,
+.auth-fourth-row-button-container {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -140,8 +141,8 @@
   border-radius: 50%;
   padding-top: 10px;
   padding-bottom: 10px;
-  padding-left: 15px;
-  padding-right: 15px;
-  height: 30px;
-  width: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 25px;
+  width: 25px;
 }
