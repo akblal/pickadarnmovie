@@ -8,7 +8,8 @@
 }
 
 .sign-in-container,
-.user-creation-container {
+.user-creation-container,
+.password-page-container{
   border: solid;
   border-width: 1px;
   border-color: black;
@@ -21,23 +22,29 @@
   max-height: 460px;
 }
 
-.sign-in-logo {
+.sign-in-logo,
+.password-page-logo {
   margin-bottom: 60px;;
 }
 
-.sign-in-title {
+.sign-in-title,
+.passord-page-title,
+.icon-and-email-container {
   margin-bottom: 40px;
 }
 
 .sign-in-email-field,
 .user-creation-email-field,
-.user-creation-password-field {
+.user-creation-password-field,
+.password-page-password-field,
+.icon-and-email-container {
   width: 392px;
 }
 
 .sign-in-continue-button,
 .sign-in-create-user-button,
-.user-creation-create-button {
+.user-creation-create-button,
+.password-continue-button {
   width: 400px;
 }
 .sign-in-continue-button,
@@ -47,12 +54,15 @@
 .user-creation-last-name-field,
 .user-creation-email-field,
 .user-creation-password-field,
-.user-creation-create-button{
+.user-creation-create-button,
+.password-continue-button,
+.password-page-password-field{
   height: 50px;
   margin-bottom: 10px;
 }
 
-.sign-in-buttons-container {
+.sign-in-buttons-container,
+.password-button-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -86,4 +96,24 @@
 .user-creation-certification-container {
   margin-bottom: 10px;
   display: flex;
+}
+
+.icon-and-email-container {
+  border: solid;
+  border-width: 1px;
+  border-color: black;
+  border-radius: 5%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 357px;
+}
+
+.icon-and-email-container:hover {
+  cursor: pointer;
+}
+
+.icon-and-email-container:active{
+  cursor: pointer;
 }

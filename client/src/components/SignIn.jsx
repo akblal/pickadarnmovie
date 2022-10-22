@@ -16,6 +16,7 @@ function SignIn ({ changePage }) {
 
   const confirmEmail = (e) => {
     console.log (email, 'email')
+    changePage('password');
   }
 
   const confirmNewUser = (e) => {
