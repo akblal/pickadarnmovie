@@ -52,7 +52,6 @@ function Authentication ({ changePage }) {
   }
 
   const verifyCode = (e) => {
-    console.log (userInput, randomNumber)
     if (userInput === randomNumber) {
       changePage('finished')
     } else {
