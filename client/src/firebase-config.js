@@ -1,3 +1,1 @@
-import { initializeApp } from "firebase/app";
-
-//test 2
+//test
