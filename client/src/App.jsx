@@ -6,6 +6,7 @@ import SignIn from './components/SignIn.jsx';
 import UserCreation from './components/UserCreation.jsx';
 import Password from './components/Password.jsx';
 import Authentication from './components/Authentication.jsx';
+import RandomPage from './components/RandomPage.jsx';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
@@ -13,9 +14,15 @@ const root = createRoot(container);
 function App (props) {
 
   const [pageNumber, setPageNumber] = useState('sign-in');
+  const [user, setUser] = useState({});
 
   const changePage = (number) => {
     setPageNumber(number);
+  }
+
+  const retrieveUser = (user) => {
+    setUser(user);
+    console.log (user, 'user has been set!')
   }
 
   return (
@@ -25,7 +32,7 @@ function App (props) {
       }
 
       {pageNumber === 'create-user' &&
-        <UserCreation changePage= {changePage}/>
+        <UserCreation changePage= {changePage} retrieveUser= {retrieveUser}/>
       }
 
       {pageNumber === 'password' &&
@@ -37,7 +44,7 @@ function App (props) {
       }
 
       {pageNumber === 'finished' &&
-        <SignIn changePage= {changePage}/>
+        <RandomPage changePage= {changePage} user= {user}/>
       }
 
     </div>

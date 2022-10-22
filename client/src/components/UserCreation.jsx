@@ -1,6 +1,9 @@
 import React, { useState }from 'react';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
-function UserCreation ({ changePage }) {
+import { auth } from '../the-firebase-config.js'
+
+function UserCreation ({ changePage, retrieveUser }) {
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -38,10 +41,19 @@ function UserCreation ({ changePage }) {
     setChecked(change);
   }
 
-  const handleSubmit = (e) => {
+  const registerUser = async (e) => {
     console.log ('new user created!')
     console.log (firstName + ' ' + lastName + ' has an email: ' + email +'.')
-    console.log (password, 'hidden')
+    console.log (password, 'hidden');
+    try {
+      const user = await createUserWithEmailAndPassword(auth, email, password);
+      console.log(user);
+      retrieveUser(user)
+      changePage('finished')
+
+    } catch (error) {
+      console.log (error.message);
+    }
   }
 
   const handleKeyboard = (e) => {
@@ -113,7 +125,7 @@ function UserCreation ({ changePage }) {
             </div>
           </div>
           <div className= 'user-creation-create-button-container'>
-            <button className= 'user-creation-create-button' onClick= {handleSubmit}>Create Free Account</button>
+            <button className= 'user-creation-create-button' onClick= {registerUser}>Create Free Account</button>
           </div>
 
         </div>
