@@ -1,8 +1,8 @@
 import React, { useState }from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleUser } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 
-function SignIn ({ changePage }) {
+function Password ({ changePage }) {
 
   const [password, setPassword] = useState('');
 
@@ -20,7 +20,7 @@ function SignIn ({ changePage }) {
   }
 
   const handleSubmit = (e) => {
-    changePage('2fA')
+    changePage('authentication')
   }
 
   return (
@@ -53,4 +53,4 @@ function SignIn ({ changePage }) {
   )
 };
 
-export default SignIn;
+export default Password;

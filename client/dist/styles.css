@@ -117,3 +117,31 @@
 .icon-and-email-container:active{
   cursor: pointer;
 }
+
+.auth-button-number {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.auth-first-row-button-container,
+.auth-second-row-button-container,
+.auth-third-row-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+}
+
+.auth-number-button {
+  border: solid;
+  border-width: 1px;
+  border-color: black;
+  border-radius: 50%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  height: 30px;
+  width: 30px;
+}

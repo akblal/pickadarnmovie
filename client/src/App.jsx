@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import SignIn from './components/SignIn.jsx';
 import UserCreation from './components/UserCreation.jsx';
 import Password from './components/Password.jsx';
+import Authentication from './components/Authentication.jsx';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
@@ -29,6 +30,10 @@ function App (props) {
 
       {pageNumber === 'password' &&
         <Password changePage= {changePage}/>
+      }
+
+      {pageNumber === 'authentication' &&
+        <Authentication changePage= {changePage}/>
       }
 
     </div>
