@@ -6,6 +6,7 @@ function UserCreation ({ changePage }) {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [checked, setChecked] = useState(false);
 
   const handleBack = (e) => {
     console.log ('back button clicked!')
@@ -32,14 +33,19 @@ function UserCreation ({ changePage }) {
     setPassword(text);
   }
 
-  const handleKeyboard = (e) => {
-    e.preventDefault();
+  const handleCheckBox = (e) => {
+    let change = !checked;
+    setChecked(change);
   }
 
   const handleSubmit = (e) => {
     console.log ('new user created!')
     console.log (firstName + ' ' + lastName + ' has an email: ' + email +'.')
     console.log (password, 'hidden')
+  }
+
+  const handleKeyboard = (e) => {
+    e.preventDefault();
   }
 
   return (
@@ -99,11 +105,13 @@ function UserCreation ({ changePage }) {
           </div>
 
           <div className= 'user-creation-certification-container'>
+            <div className= 'user-creation-checkbox-container'>
+              <input type= 'checkbox' checked= {checked} onChange= {handleCheckBox} className= 'user-creation-checkbox'></input>
+            </div>
             <div className= 'user-creation-certification-message'>
               I certify that I am 18 years of age or older, I agree to the User Agreement, and I have read the Privacy Policy.
             </div>
           </div>
-
           <div className= 'user-creation-create-button-container'>
             <button className= 'user-creation-create-button' onClick= {handleSubmit}>Create Free Account</button>
           </div>
