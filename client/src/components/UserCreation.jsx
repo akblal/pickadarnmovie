@@ -1,9 +1,10 @@
 import React, { useState }from 'react';
+import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 import { auth } from '../the-firebase-config.js'
 
-function UserCreation ({ changePage, retrieveUser }) {
+function UserCreation ({ retrieveUser }) {
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -11,9 +12,10 @@ function UserCreation ({ changePage, retrieveUser }) {
   const [password, setPassword] = useState('');
   const [checked, setChecked] = useState(false);
 
+  let navigate = useNavigate();
+
   const handleBack = (e) => {
-    console.log ('back button clicked!')
-    changePage('sign-in');
+    navigate('/');
   }
 
   const handleFirstName = (e) => {
@@ -49,7 +51,7 @@ function UserCreation ({ changePage, retrieveUser }) {
       const user = await createUserWithEmailAndPassword(auth, email, password);
       console.log(user);
       retrieveUser(user)
-      changePage('finished')
+      navigate('/random-page');
 
     } catch (error) {
       console.log (error.message);

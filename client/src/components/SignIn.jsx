@@ -1,8 +1,10 @@
 import React, { useState }from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function SignIn ({ changePage }) {
 
   const [email, setEmail] = useState('');
+  let navigate = useNavigate();
 
   const handleEmail = (e) => {
     let emailAddress = e.target.value;
@@ -16,12 +18,12 @@ function SignIn ({ changePage }) {
 
   const confirmEmail = (e) => {
     console.log (email, 'email')
-    changePage('password');
+    navigate('/password')
   }
 
   const confirmNewUser = (e) => {
     console.log ('clicked created user button')
-    changePage('create-user');
+    navigate('/create-user');
   }
 
   return (

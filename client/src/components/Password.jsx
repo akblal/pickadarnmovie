@@ -1,13 +1,16 @@
 import React, { useState }from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 
-function Password ({ changePage }) {
+function Password () {
 
   const [password, setPassword] = useState('');
 
+  let navigate = useNavigate();
+
   const handleChangePage = (e) => {
-    changePage('sign-in');
+    navigate('/');
   }
 
   const handleKeyboard = (e) => {
@@ -20,7 +23,7 @@ function Password ({ changePage }) {
   }
 
   const handleSubmit = (e) => {
-    changePage('authentication')
+    navigate('/authentication')
   }
 
   return (

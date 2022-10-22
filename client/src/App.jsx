@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Router } from 'react-router-dom';
 
 import SignIn from './components/SignIn.jsx';
 import UserCreation from './components/UserCreation.jsx';
@@ -27,26 +27,13 @@ function App (props) {
 
   return (
     <div>
-      {pageNumber === 'sign-in' &&
-        <SignIn  changePage= {changePage}/>
-      }
-
-      {pageNumber === 'create-user' &&
-        <UserCreation changePage= {changePage} retrieveUser= {retrieveUser}/>
-      }
-
-      {pageNumber === 'password' &&
-        <Password changePage= {changePage}/>
-      }
-
-      {pageNumber === 'authentication' &&
-        <Authentication changePage= {changePage}/>
-      }
-
-      {pageNumber === 'finished' &&
-        <RandomPage changePage= {changePage} user= {user}/>
-      }
-
+      <Routes>
+        <Route path= '/' element= {<SignIn />} />
+        <Route path= 'password' element= {<Password />} />
+        <Route path= 'create-user' element= {<UserCreation retrieveUser= {retrieveUser}/>} />
+        <Route path= 'authentication' element= {<Authentication />} />
+        <Route path= 'random-page' element= {<RandomPage user= {user}/>} />
+      </Routes>
     </div>
   )
 }
@@ -54,3 +41,23 @@ function App (props) {
 root.render(<BrowserRouter>
     <App />
     </BrowserRouter>)
+
+  //   {pageNumber === 'sign-in' &&
+  //   <SignIn  changePage= {changePage}/>
+  // }
+
+  // {pageNumber === 'create-user' &&
+  //   <UserCreation changePage= {changePage} retrieveUser= {retrieveUser}/>
+  // }
+
+  // {pageNumber === 'password' &&
+  //   <Password changePage= {changePage}/>
+  // }
+
+  // {pageNumber === 'authentication' &&
+  //   <Authentication changePage= {changePage}/>
+  // }
+
+  // {pageNumber === 'finished' &&
+  //   <RandomPage changePage= {changePage} user= {user}/>
+  // }
