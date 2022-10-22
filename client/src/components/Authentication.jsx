@@ -10,7 +10,7 @@ function Authentication ({ changePage }) {
   const [userInput, setUserInput] = useState('');
   const [wrongInput, setWrongInput] = useState (false);
 
-  let ranNumLen = 4;
+  let lengthCode = 5;
 
   const shareCode = (e) => {
     console.log ('button pressed')
@@ -19,7 +19,7 @@ function Authentication ({ changePage }) {
     }
 
     let stringNum = '';
-    for (let i = 0; i < ranNumLen; i++) {
+    for (let i = 0; i < lengthCode; i++) {
       let num = Math.floor(Math.random() * 10);
       stringNum += '' + num;
     }
@@ -39,7 +39,7 @@ function Authentication ({ changePage }) {
   }
 
   const selectNumber = (num) => {
-    if (userInput.length < 4) {
+    if (userInput.length < lengthCode) {
       let temp = userInput;
       temp += num;
       setUserInput(temp);
