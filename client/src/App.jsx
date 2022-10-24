@@ -20,9 +20,10 @@ function App (props) {
     setPageNumber(number);
   }
 
-  const retrieveUser = (user) => {
+  const retrieveUser = (person) => {
+    user.email = person.user.email;
+    console.log(person.user.email, 'in App.jsx');
     setUser(user);
-    console.log (user, 'user has been set!')
   }
 
   return (

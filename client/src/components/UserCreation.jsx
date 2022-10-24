@@ -1,8 +1,8 @@
 import React, { useState }from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-
-import { auth } from '../the-firebase-config.js'
+import { auth } from '../the-firebase-config.js';
+import axios from 'axios';
 
 function UserCreation ({ retrieveUser }) {
 
@@ -51,7 +51,11 @@ function UserCreation ({ retrieveUser }) {
       const user = await createUserWithEmailAndPassword(auth, email, password);
       console.log(user);
       retrieveUser(user)
-      navigate('/random-page');
+      axios.post('/insertEmail', {email: email})
+      .then (() => {
+        navigate('/random-page');
+      })
+
 
     } catch (error) {
       console.log (error.message);
