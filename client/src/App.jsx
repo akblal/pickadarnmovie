@@ -20,9 +20,8 @@ function App (props) {
     setPageNumber(number);
   }
 
-  const retrieveUser = (person) => {
-    user.email = person.user.email;
-    console.log(person.user.email, 'in App.jsx');
+  const retrieveUser = (email) => {
+    user.email = email;
     setUser(user);
   }
 

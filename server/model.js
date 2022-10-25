@@ -12,5 +12,18 @@ module.exports = {
         resolve(results);
       })
     })
-  }
+  },
+
+  getEmail (email) {
+    return new Promise ((resolve, reject) => {
+      const queryArgument = 'SELECT * FROM emailAddress WHERE email = ($1);';
+      const queryStatement = [email];
+      pool.query(queryArgument, queryStatement, (err, results) => {
+        if (err) {
+          reject(err);
+        }
+        resolve(results);
+        })
+      })
+    }
 }

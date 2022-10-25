@@ -49,14 +49,11 @@ function UserCreation ({ retrieveUser }) {
     console.log (password, 'hidden');
     try {
       const user = await createUserWithEmailAndPassword(auth, email, password);
-      console.log(user);
-      retrieveUser(user)
+      retrieveUser(email)
       axios.post('/insertEmail', {email: email})
       .then (() => {
         navigate('/random-page');
       })
-
-
     } catch (error) {
       console.log (error.message);
     }

@@ -1,10 +1,12 @@
 import React, { useState }from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 
 function SignIn ({ changePage }) {
 
   const [email, setEmail] = useState('');
+  const [isEmailFound, setIsEmailFound] = useState(true);
   let navigate = useNavigate();
 
   const handleEmail = (e) => {
@@ -19,7 +21,21 @@ function SignIn ({ changePage }) {
 
   const confirmEmail = (e) => {
     console.log (email, 'email')
-    navigate('/password')
+    axios.get('getEmail', {params:
+      {
+        email: email,
+      }})
+      .then((results) => {
+        if (results.data === 'email found') {
+          navigate('/password')
+        } else {
+          setIsEmailFound(false);
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+
   }
 
   const confirmNewUser = (e) => {
@@ -33,7 +49,10 @@ function SignIn ({ changePage }) {
         <h1 className= 'sign-in-logo'>pickadamnmovie</h1>
         <h1 className= 'sign-in-title'>Sign Into PickaDamnMovie</h1>
         <div className= 'sign-in-email-container'>
-          <div>Email:</div>
+          {isEmailFound ?
+            <span>Email:</span> :
+            <span>Email does not exist in our database. Try creating a new account or make sure it is spelled correctly.</span>
+          }
           <form onSubmit= {handleEmailKeyboard}>
             <input type= 'text' className= 'sign-in-email-field' value= {email} onChange= {handleEmail}/>
           </form>

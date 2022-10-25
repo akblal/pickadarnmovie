@@ -10,6 +10,11 @@ app.use(express.json());
 app.use(express.static('client/dist'));
 app.use(cors());
 
+
+//GET EMAIL from emailAddress table
+app.get('/getEmail', controller.getEmail);
+
+//INSERT EMAIL INTO emailAddress table
 app.post('/insertEmail', controller.insertEmail);
 
 app.listen(3000,()=>{
