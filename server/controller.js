@@ -3,7 +3,9 @@ const model = require ('./model.js');
 module.exports = {
   insertEmail(req, res) {
     let email = req.body.email;
-    model.insertEmail(email)
+    let firstName = req.body.firstName;
+    let lastName = req. body.lastName;
+    model.insertEmail(email, firstName, lastName)
       .then ((results) => {
         res.sendStatus(200);
       })

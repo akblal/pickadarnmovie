@@ -11,6 +11,9 @@ function UserCreation ({ retrieveUser }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [checked, setChecked] = useState(false);
+  const [missingFirstName, setMissingFirstName] = useState(false);
+  const [missingLastName, setMissingLastName] = useState(false);
+  const {missingCheckBox, setMissingCheckBox} = useState(false);
 
   let navigate = useNavigate();
 
@@ -38,7 +41,7 @@ function UserCreation ({ retrieveUser }) {
     setPassword(text);
   }
 
-  const handleCheckBox = (e) => {
+  const handleChecked = (e) => {
     let change = !checked;
     setChecked(change);
   }
@@ -47,16 +50,35 @@ function UserCreation ({ retrieveUser }) {
     console.log ('new user created!')
     console.log (firstName + ' ' + lastName + ' has an email: ' + email +'.')
     console.log (password, 'hidden');
-    try {
-      const user = await createUserWithEmailAndPassword(auth, email, password);
-      retrieveUser(email)
-      axios.post('/insertEmail', {email: email})
-      .then (() => {
-        navigate('/random-page');
-      })
-    } catch (error) {
-      console.log (error.message);
+    if (firstName.length > 0 && lastName.length > 0 && checked) {
+      try {
+        const user = await createUserWithEmailAndPassword(auth, email, password);
+        retrieveUser(email)
+        axios.post('/insertEmail', {
+          email: email,
+          firstName: firstName,
+          lastName: lastName,
+        })
+        .then (() => {
+          navigate('/random-page');
+        })
+      } catch (error) {
+        console.log (error.message);
+      }
     }
+    if (firstName.length === 0) {
+      setMissingFirstName(true);
+    } else {
+      setMissingFirstName(false);
+    }
+
+    if (lastName.length === 0) {
+      setMissingLastName(true);
+    } else {
+      setMissingLastName(false);
+    }
+
+    console.log (checked, 'check box clicked')
   }
 
   const handleKeyboard = (e) => {
@@ -76,9 +98,10 @@ function UserCreation ({ retrieveUser }) {
 
           <div className= 'user-creation-name-fields-container'>
             <div className= 'user-creation-first-name-container'>
-              <div className= 'user-creation-first-name-title'>
-                First Name:
-              </div>
+              {missingFirstName ?
+                <div className= 'user-creation-first-name-title'>Error: Enter First Name</div> :
+                <div className= 'user-creation-first-name-title'>First Name</div>
+              }
               <div className= 'user-creation-first-name-field-container'>
                 <form onSubmit= {handleKeyboard}>
                   <input type= 'text' className= 'user-creation-first-name-field' value= {firstName} onChange= {handleFirstName} />
@@ -86,9 +109,10 @@ function UserCreation ({ retrieveUser }) {
               </div>
             </div>
             <div className= 'user-creation-last-name-container'>
-              <div className= 'user-creation-last-name-title'>
-                Last Name:
-              </div>
+            {missingLastName ?
+              <div className= 'user-creation-last-name-title'>Error: Enter Last Name</div> :
+              <div className= 'user-creation-last-name-title'>Last Name</div>
+            }
               <div className= 'user-creation-last-name-field-container'>
                 <form onSubmit= {handleKeyboard}>
                   <input type= 'text' className= 'user-creation-last-name-field' value= {lastName} onChange= {handleLastName} />
@@ -103,7 +127,7 @@ function UserCreation ({ retrieveUser }) {
             </div>
             <div className= 'user-creation-email-field-container'>
               <form onSubmit= {handleKeyboard}>
-                <input type= 'text' className= 'user-creation-email-field' value= {email} onChange= {handleEmail} />
+                <input type= 'text' onChange= {handleChecked} className= 'user-creation-email-field' value= {email} onChange= {handleEmail} />
               </form>
             </div>
           </div>
@@ -121,11 +145,17 @@ function UserCreation ({ retrieveUser }) {
 
           <div className= 'user-creation-certification-container'>
             <div className= 'user-creation-checkbox-container'>
-              <input type= 'checkbox' checked= {checked} onChange= {handleCheckBox} className= 'user-creation-checkbox'></input>
+              <input type= 'checkbox' checked= {checked} onChange= {handleChecked} className= 'user-creation-checkbox'></input>
             </div>
-            <div className= 'user-creation-certification-message'>
+            {checked ?
+              <div className= 'user-creation-certification-message' >
+              I certify that I am 18 years of age or older, I agree to the User Agreement, and I have read the Privacy Policy.
+            </div> :
+            <div className= 'user-creation-certification-message' style= {{fontWeight:'bold'}}>
               I certify that I am 18 years of age or older, I agree to the User Agreement, and I have read the Privacy Policy.
             </div>
+            }
+
           </div>
           <div className= 'user-creation-create-button-container'>
             <button className= 'user-creation-create-button' onClick= {registerUser}>Create Free Account</button>
