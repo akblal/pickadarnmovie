@@ -2,8 +2,7 @@ import React, { useState }from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-
-function SignIn ({ changePage }) {
+function SignIn ({ retrieveUserEmail }) {
 
   const [email, setEmail] = useState('');
   const [isEmailFound, setIsEmailFound] = useState(true);
@@ -21,12 +20,14 @@ function SignIn ({ changePage }) {
 
   const confirmEmail = (e) => {
     console.log (email, 'email')
-    axios.get('getEmail', {params:
+    axios.get('/getEmail', {params:
       {
         email: email,
       }})
       .then((results) => {
+        console.log('still in .then', results)
         if (results.data === 'email found') {
+          retrieveUserEmail(email)
           navigate('/password')
         } else {
           setIsEmailFound(false);
@@ -35,7 +36,6 @@ function SignIn ({ changePage }) {
       .catch((err) => {
         console.log(err)
       })
-
   }
 
   const confirmNewUser = (e) => {

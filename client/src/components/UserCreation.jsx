@@ -4,7 +4,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../the-firebase-config.js';
 import axios from 'axios';
 
-function UserCreation ({ retrieveUser }) {
+function UserCreation ({ retrieveUserEmail }) {
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -47,13 +47,13 @@ function UserCreation ({ retrieveUser }) {
   }
 
   const registerUser = async (e) => {
-    console.log ('new user created!')
-    console.log (firstName + ' ' + lastName + ' has an email: ' + email +'.')
-    console.log (password, 'hidden');
+    // console.log ('new user created!')
+    // console.log (firstName + ' ' + lastName + ' has an email: ' + email +'.')
+    // console.log (password, 'hidden');
     if (firstName.length > 0 && lastName.length > 0 && checked) {
       try {
         const user = await createUserWithEmailAndPassword(auth, email, password);
-        retrieveUser(email)
+        retrieveUserEmail(email)
         axios.post('/insertEmail', {
           email: email,
           firstName: firstName,
@@ -77,8 +77,6 @@ function UserCreation ({ retrieveUser }) {
     } else {
       setMissingLastName(false);
     }
-
-    console.log (checked, 'check box clicked')
   }
 
   const handleKeyboard = (e) => {

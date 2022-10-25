@@ -16,6 +16,7 @@ module.exports = {
 
   getEmail (req, res) {
     let email = req.query.email;
+    console.log (email, 'controller')
     model.getEmail(email)
       .then((results) => {
         if (results.rows.length > 0) {
@@ -31,5 +32,4 @@ module.exports = {
         res.status(500);
       })
   }
-
 }

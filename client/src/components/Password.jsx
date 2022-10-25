@@ -1,11 +1,17 @@
-import React, { useState }from 'react';
+import React, { useState, useEffect }from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../the-firebase-config.js';
 
-function Password () {
+function Password ({ user }) {
 
   const [password, setPassword] = useState('');
+
+  useEffect(() => {
+    console.log (user)
+  }, [])
 
   let navigate = useNavigate();
 
@@ -22,8 +28,19 @@ function Password () {
     setPassword(text);
   }
 
-  const handleSubmit = (e) => {
-    navigate('/authentication')
+  const handleSubmit = async (e) => {
+    try {
+      console.log(user)
+      const authenticate = await signInWithEmailAndPassword(auth, user.email, password);
+      navigate('/authentication');
+    } catch (error) {
+      console.log (error.message);
+      console.log ('Incorrect Password')
+    }
+  }
+
+  const cancelSignIn = () => {
+    console.log('cancel sign in')
   }
 
   return (
@@ -33,10 +50,10 @@ function Password () {
         <h1 className= 'password-page-title'>Enter Password</h1>
         <div className= 'icon-and-email-container' onClick= {handleChangePage}>
           <span className= 'password-page-icon-container'>
-            <FontAwesomeIcon icon= {faCircleUser} />
+            <FontAwesomeIcon className= 'password-user-icon' icon= {faCircleUser} />
           </span>
           <span className= 'password-page-email-container'>
-            <span>email</span>
+            <span>{user.email}</span>
           </span>
         </div>
         <div className= 'password-page-password-container'>
@@ -50,6 +67,9 @@ function Password () {
         </div>
         <div className= 'password-button-container'>
           <button onClick= {handleSubmit} className= 'password-continue-button'>Continue</button>
+        </div>
+        <div className= 'password-cancel-sign-in-container' onClick= {cancelSignIn}>
+          Cancel Sign In
         </div>
       </div>
     </div>

@@ -16,6 +16,7 @@ module.exports = {
 
   getEmail (email) {
     return new Promise ((resolve, reject) => {
+      console.log (email, 'model')
       const queryArgument = 'SELECT * FROM emailAddress WHERE email = ($1);';
       const queryStatement = [email];
       pool.query(queryArgument, queryStatement, (err, results) => {

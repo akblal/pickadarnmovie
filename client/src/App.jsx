@@ -16,21 +16,22 @@ function App (props) {
   const [pageNumber, setPageNumber] = useState('sign-in');
   const [user, setUser] = useState({});
 
-  const changePage = (number) => {
-    setPageNumber(number);
-  }
+  // const changePage = (number) => {
+  //   setPageNumber(number);
+  // }
 
-  const retrieveUser = (email) => {
+  const retrieveUserEmail = (email) => {
     user.email = email;
     setUser(user);
+    console.log (user,' user has been set')
   }
 
   return (
     <div>
       <Routes>
-        <Route path= '/' element= {<SignIn />} />
-        <Route path= 'password' element= {<Password />} />
-        <Route path= 'create-user' element= {<UserCreation retrieveUser= {retrieveUser}/>} />
+        <Route path= '/' element= {<SignIn retrieveUserEmail= {retrieveUserEmail}/>} />
+        <Route path= 'password' element= {<Password user= {user}/>} />
+        <Route path= 'create-user' element= {<UserCreation retrieveUserEmail= {retrieveUserEmail}/>} />
         <Route path= 'authentication' element= {<Authentication />} />
         <Route path= 'random-page' element= {<RandomPage user= {user}/>} />
       </Routes>
