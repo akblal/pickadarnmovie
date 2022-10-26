@@ -11,6 +11,9 @@ app.use(express.static('client/dist'));
 app.use(cors());
 
 
+//GET INDIVIDUAL USER INFORMATION from emailAddress table
+app.get('/getUser', controller.getUser);
+
 //GET EMAIL from emailAddress table
 app.get('/getEmail', controller.getEmail);
 

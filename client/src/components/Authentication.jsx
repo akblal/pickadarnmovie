@@ -55,7 +55,7 @@ function Authentication () {
 
   const verifyCode = (e) => {
     if (userInput === randomNumber) {
-      navigate('/random-page');
+      navigate('/welcome');
     } else {
       setUserInput('');
       setWrongInput(true)

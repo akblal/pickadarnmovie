@@ -47,9 +47,6 @@ function UserCreation ({ retrieveUserEmail }) {
   }
 
   const registerUser = async (e) => {
-    // console.log ('new user created!')
-    // console.log (firstName + ' ' + lastName + ' has an email: ' + email +'.')
-    // console.log (password, 'hidden');
     if (firstName.length > 0 && lastName.length > 0 && checked) {
       try {
         const user = await createUserWithEmailAndPassword(auth, email, password);
@@ -60,7 +57,7 @@ function UserCreation ({ retrieveUserEmail }) {
           lastName: lastName,
         })
         .then (() => {
-          navigate('/random-page');
+          navigate('/welcome');
         })
       } catch (error) {
         console.log (error.message);

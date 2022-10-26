@@ -16,10 +16,6 @@ function App (props) {
   const [pageNumber, setPageNumber] = useState('sign-in');
   const [user, setUser] = useState({});
 
-  // const changePage = (number) => {
-  //   setPageNumber(number);
-  // }
-
   const retrieveUserEmail = (email) => {
     user.email = email;
     setUser(user);
@@ -33,7 +29,7 @@ function App (props) {
         <Route path= 'password' element= {<Password user= {user}/>} />
         <Route path= 'create-user' element= {<UserCreation retrieveUserEmail= {retrieveUserEmail}/>} />
         <Route path= 'authentication' element= {<Authentication />} />
-        <Route path= 'random-page' element= {<RandomPage user= {user}/>} />
+        <Route path= 'welcome' element= {<RandomPage user= {user}/>} />
       </Routes>
     </div>
   )

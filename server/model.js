@@ -17,14 +17,30 @@ module.exports = {
   getEmail (email) {
     return new Promise ((resolve, reject) => {
       console.log (email, 'model')
-      const queryArgument = 'SELECT * FROM emailAddress WHERE email = ($1);';
-      const queryStatement = [email];
-      pool.query(queryArgument, queryStatement, (err, results) => {
+      const queryStatement = 'SELECT * FROM emailAddress WHERE email = ($1);';
+      const queryArgument = [email];
+      pool.query(queryStatement, queryArgument, (err, results) => {
         if (err) {
           reject(err);
         }
         resolve(results);
         })
       })
-    }
+    },
+
+  getUser (email) {
+    return new Promise ((resolve, reject) => {
+      const queryStatement = `SELECT firstname, lastname FROM emailAddress where email = ($1);`;
+      const queryArgument = [email];
+      console.log('searching...')
+      pool.query (queryStatement, queryArgument, (err, results) => {
+        if (err) {
+          console.log ('error')
+          reject(err)
+
+        }
+        resolve (results.rows[0]);
+      })
+    })
+  }
 }
