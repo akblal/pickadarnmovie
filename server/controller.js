@@ -16,7 +16,6 @@ module.exports = {
 
   getEmail (req, res) {
     let email = req.query.email;
-    console.log (email, 'controller')
     model.getEmail(email)
       .then((results) => {
         if (results.rows.length > 0) {
@@ -35,10 +34,8 @@ module.exports = {
 
   getUser (req, res) {
     let email = req.query.email;
-    console.log (email, 'in controller!')
     model.getUser(email)
       .then((results) => {
-        console.log (results, 'results from query in controller! first and last name.')
         res.send(results);
         res.status (200);
       })

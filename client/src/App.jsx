@@ -6,7 +6,7 @@ import SignIn from './components/SignIn.jsx';
 import UserCreation from './components/UserCreation.jsx';
 import Password from './components/Password.jsx';
 import Authentication from './components/Authentication.jsx';
-import RandomPage from './components/RandomPage.jsx';
+import Welcome from './components/Welcome.jsx';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
@@ -29,7 +29,7 @@ function App (props) {
         <Route path= 'password' element= {<Password user= {user}/>} />
         <Route path= 'create-user' element= {<UserCreation retrieveUserEmail= {retrieveUserEmail}/>} />
         <Route path= 'authentication' element= {<Authentication />} />
-        <Route path= 'welcome' element= {<RandomPage user= {user}/>} />
+        <Route path= 'welcome' element= {<Welcome user= {user}/>} />
       </Routes>
     </div>
   )

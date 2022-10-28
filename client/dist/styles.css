@@ -169,3 +169,22 @@
   height: 25px;
   width: 25px;
 }
+
+.user-information-containers {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.user-one-container,
+.user-two-container {
+  border: solid;
+  border-width: 1px;
+  border-color: black;
+  border-radius: 5%;
+  padding-top: 70px;
+  padding-bottom: 70px;
+  padding-left: 50px;
+  padding-right: 50px;
+  width: 403px;
+  height: 460px;
+}

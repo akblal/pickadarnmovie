@@ -32,15 +32,12 @@ module.exports = {
     return new Promise ((resolve, reject) => {
       const queryStatement = `SELECT firstname, lastname FROM emailAddress where email = ($1);`;
       const queryArgument = [email];
-      console.log('searching...')
       pool.query (queryStatement, queryArgument, (err, results) => {
         if (err) {
-          console.log ('error')
-          reject(err)
-
+          reject(err);
         }
         resolve (results.rows[0]);
       })
     })
-  }
+  },
 }
