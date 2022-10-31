@@ -10,7 +10,6 @@ function Intention () {
   const [hoverFriend, setHoverFriend] = useState(false);
   const [hoverDate, setHoverDate] = useState(false);
 
-
   let navigate = useNavigate();
 
   const handleSelection = (selected) => {
@@ -25,19 +24,16 @@ function Intention () {
 
   const handleSoloMouse = () => {
     let temp = !hoverSolo;
-    console.log(temp, 'mouse over')
     setHoverSolo(temp);
   }
 
   const handleFriendMouse = () => {
     let temp = !hoverFriend;
-    console.log(temp, 'mouse over')
     setHoverFriend(temp);
   }
 
   const handleDateMouse = () => {
     let temp = !hoverDate;
-    console.log(temp, 'mouse over')
     setHoverDate(temp);
   }
 
@@ -57,8 +53,8 @@ function Intention () {
                 <div className= 'intention-hover-text' onMouseLeave= {handleSoloMouse}>Solo Dolo</div> :
                 <img className= 'intention-image' src= {solo} onMouseEnter= {handleSoloMouse} />
               }
-
             </div>
+
             <div className= 'image-container' onClick= {() => handleSelection('friend')}>
               {hoverFriend ?
                 <div className= 'intention-hover-text' onMouseLeave= {handleFriendMouse}>Hanging with Friends</div> :
@@ -66,6 +62,7 @@ function Intention () {
               }
             </div>
           </div>
+
           <div className= 'image-bottom-row-container'>
             <div className= 'image-container' onClick= {() => handleSelection('date')}>
               {hoverDate ?
@@ -73,8 +70,8 @@ function Intention () {
                 <img className= 'intention-image' src= {date} onMouseEnter= {handleDateMouse} />
               }
             </div>
-
           </div>
+
         </div>
       </div>
      <div>
