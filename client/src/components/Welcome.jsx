@@ -16,8 +16,6 @@ function Welcome ({ user }) {
   const options = [{name: 'Option 1', id: 1},{name: 'Option 2', id: 2}, {name: 'Option 3', id: 3}, {name: 'Option 4', id: 4}];
   const limitGenres = 3;
 
-
-
   useEffect (() => {
     let email = user.email;
     axios.get ('/getUser', {
@@ -84,10 +82,7 @@ function Welcome ({ user }) {
         <div className= 'user-two-container'>
           <h1>User Two</h1>
         </div>
-
       </div>
-
-
 
       <div className= 'find-match-button-container'>
         <button onClick= {findMatch}>Find Match</button>
@@ -103,8 +98,6 @@ function Welcome ({ user }) {
       </div>
       <button onClick= {backToHome}>Home</button>
       <p>This product uses the TMDB API but is not endorsed or certified by TMDB.</p>
-
-
     </div>
   )
 

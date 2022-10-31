@@ -28,7 +28,7 @@ function SignIn ({ retrieveUserEmail }) {
         console.log('still in .then', results)
         if (results.data === 'email found') {
           retrieveUserEmail(email)
-          navigate('/welcome')
+          navigate('/password')
         } else {
           setIsEmailFound(false);
         }
