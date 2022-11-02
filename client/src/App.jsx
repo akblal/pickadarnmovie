@@ -23,6 +23,12 @@ function App (props) {
     console.log (user,' user has been set')
   }
 
+  const retrieveUserWatchPartner = (list) => {
+    user.partner = list;
+    setUser(user);
+    console.log (user);
+  }
+
   return (
     <div>
       <Routes>
@@ -30,7 +36,7 @@ function App (props) {
         <Route path= 'password' element= {<Password user= {user}/>} />
         <Route path= 'create-user' element= {<UserCreation retrieveUserEmail= {retrieveUserEmail}/>} />
         <Route path= 'authentication' element= {<Authentication />} />
-        <Route path= 'intention' element= {<Intention />} />
+        <Route path= 'intention' element= {<Intention retrieveUserWatchPartner= {retrieveUserWatchPartner}/>} />
         <Route path= 'welcome' element= {<Welcome user= {user}/>} />
       </Routes>
     </div>

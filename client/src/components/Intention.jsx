@@ -3,12 +3,17 @@ import { useNavigate } from 'react-router-dom';
 import solo from '../../../pictures/intention-solo.png';
 import friend from '../../../pictures/intention-friend.png';
 import date from '../../../pictures/intention-date.png';
+import Popup from './Popup.jsx';
 
-function Intention () {
+function Intention ({ retrieveUserWatchPartner }) {
 
   const [hoverSolo, setHoverSolo] = useState(false);
   const [hoverFriend, setHoverFriend] = useState(false);
   const [hoverDate, setHoverDate] = useState(false);
+  const [openDatePopUp, setOpenDatePopUp] = useState(false);
+  const [openFriendPopUp, setOpenFriendPopUp] = useState(false);
+  const [dateName, setDateName] = useState('');
+  const [friendName, setFriendName] = useState('');
 
   let navigate = useNavigate();
 
@@ -17,8 +22,10 @@ function Intention () {
       console.log ('solo')
     } else if (selected === 'friend') {
       console.log ('friend')
+      setOpenFriendPopUp(true);
     } else if (selected === 'date') {
       console.log ('date')
+      setOpenDatePopUp(true);
     }
   }
 
@@ -35,6 +42,31 @@ function Intention () {
   const handleDateMouse = () => {
     let temp = !hoverDate;
     setHoverDate(temp);
+  }
+
+  const handleKeyboard = (e) => {
+    e.preventDefault();
+  }
+
+  const handleDateName =  (e) => {
+    let name = e.target.value;
+    setDateName(name);
+  }
+
+  const handleDateSubmit = () => {
+    console.log (dateName)
+    setOpenDatePopUp(false);
+    retrieveUserWatchPartner([dateName]);
+    navigate('/welcome')
+  }
+
+  const handleFriendName =  (e) => {
+    let name = e.target.value;
+    setFriendName(name);
+  }
+
+  const handleFriendSubmit = () => {
+    console.log (friendName)
   }
 
   return (
@@ -76,6 +108,21 @@ function Intention () {
       </div>
      <div>
         <button onClick= {() => {navigate('/')}}>Back</button>
+        <Popup trigger= {openDatePopUp} setTriggerPopUp= {setOpenDatePopUp}>
+          <h3>Who is the Lucky Partner?</h3>
+          <form onSubmit= {handleKeyboard}>
+            <input type= 'text' className= 'sign-in-email-field' value= {dateName} onChange= {handleDateName}/>
+          </form>
+          <button onClick= {handleDateSubmit}> Leggo! </button>
+        </Popup>
+
+        <Popup trigger= {openFriendPopUp} setTriggerPopUp= {setOpenFriendPopUp}>
+          <h3>List your Friend(s) name(s)</h3>
+          <form onSubmit= {handleKeyboard}>
+            <input type= 'text' className= 'sign-in-email-field' value= {friendName} onChange= {handleFriendName}/>
+          </form>
+          <button onClick= {handleFriendSubmit}> Leggo! </button>
+        </Popup>
       </div>
     </div>
   )

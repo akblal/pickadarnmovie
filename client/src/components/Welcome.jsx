@@ -57,6 +57,11 @@ function Welcome ({ user }) {
   return (
     <div>
       <h1>{user.email}</h1>
+      {user.partner.map((buddy) => {
+        return (
+          <h2>{buddy}</h2>
+        )
+      })}
       <div className= 'user-information-containers'>
         <div className= 'user-one-container'>
           <h1>User One</h1>
