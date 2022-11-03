@@ -57,14 +57,9 @@ function Welcome ({ user }) {
   return (
     <div>
       <h1>{user.email}</h1>
-      {user.partner.map((buddy) => {
-        return (
-          <h2>{buddy}</h2>
-        )
-      })}
       <div className= 'user-information-containers'>
         <div className= 'user-one-container'>
-          <h1>User One</h1>
+          <h1>{userOneFirstName} {userOneLastName}</h1>
           <h2>Select genres you are in the mood for (up to 3)</h2>
           <MultiSelect
             options={options} // Options to display in the dropdown
@@ -85,7 +80,7 @@ function Welcome ({ user }) {
 
         </div>
         <div className= 'user-two-container'>
-          <h1>User Two</h1>
+          <h1>{user.partner[0]}</h1>
         </div>
       </div>
 
