@@ -47,7 +47,8 @@
 .user-creation-create-button,
 .password-continue-button,
 .password-auth-code,
-.intention-button {
+.intention-button,
+.selection-button {
   width: 400px;
 }
 .sign-in-continue-button,
@@ -60,7 +61,8 @@
 .user-creation-create-button,
 .password-continue-button,
 .password-page-password-field,
-.password-auth-code{
+.password-auth-code,
+.selection-button{
   height: 50px;
   margin-bottom: 10px;
 }
@@ -175,6 +177,12 @@
 .user-information-containers {
   display: flex;
   justify-content: space-evenly;
+  border: solid;
+  border-width: 1px;
+  border-color: black;
+  border-radius: 50px;
+  padding: 50px;
+
 }
 
 .user-one-container,
@@ -274,4 +282,30 @@
   position: absolute;
   top: 10px;
   right: 10px;
+}
+
+.user-icon-dropdown {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.user-icon:hover,
+.user-icon:active {
+  cursor: pointer;
+}
+
+.user-icon {
+  font-size: 50px;
+}
+
+.selection-button-container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  bottom: 200px;
+}
+
+.multiselect-dropdown {
+
 }

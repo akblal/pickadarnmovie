@@ -2,7 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import config from '../../../config.js';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleUser} from '@fortawesome/free-solid-svg-icons';
+
 import MultiSelect from 'multiselect-react-dropdown';
+
 
 function Welcome ({ user }) {
 
@@ -13,7 +17,7 @@ function Welcome ({ user }) {
   const [userTwoFirstName, setUserTwoFirstName] = useState('');
   const [userTwoLastName, setUserTwoLastName] = useState('');
 
-  const options = [{name: 'Option 1', id: 1},{name: 'Option 2', id: 2}, {name: 'Option 3', id: 3}, {name: 'Option 4', id: 4}];
+  const options = [{name: 'Action', id: 28},{name: 'Adventure', id: 12}, {name: 'Animation', id: 16}, {name: 'Comedy', id: 35}, {name: 'Crime', id: 80}, {name: 'Documentary', id: 99}, , {name: 'Drama', id: 18}, {name: 'Family', id: 10571}, {name: 'Fantasy', id: 14}, {name: 'History', id: 36}, {name: 'Horror', id: 27}, {name: 'Music', id: 10402}, {name: 'Mystery', id: 9648}, {name: 'Romance', id: 10749}, {name: 'Science Fiction', id: 878}, {name: 'TV Movie', id: 10770}, {name: 'Thriller', id: 53}, {name: 'War', id: 10752}, , {name: 'Western', id: 37}];
   const limitGenres = 3;
 
   useEffect (() => {
@@ -41,7 +45,8 @@ function Welcome ({ user }) {
   }
 
   const addUserOneGenreSelection = (selectedList, selectedItem) => {
-    let genre = selectedItem.name;
+    let genre = selectedItem;
+    console.log(selectedItem, 'selecteditem')
     let temp = userOneGenres.concat([genre]);
     setUserOneGenres(temp);
   }
@@ -49,18 +54,21 @@ function Welcome ({ user }) {
   const removeUserOneGenreSelection = (selectedList, selectedItem) => {
     let temp = [];
     for (let i = 0; i < selectedList.length; i++) {
-      temp.push(selectedList[i].name);
+      temp.push(selectedList[i]);
     }
     setUserOneGenres(temp);
   }
 
   return (
     <div>
-      <h1>{user.email}</h1>
+      <div className= 'user-icon-dropdown'>
+        <FontAwesomeIcon icon= {faCircleUser} className= 'user-icon'/>
+        <h1>{user.email}</h1>
+      </div>
       <div className= 'user-information-containers'>
         <div className= 'user-one-container'>
           <h1>{userOneFirstName} {userOneLastName}</h1>
-          <h2>Select genres you are in the mood for (up to 3)</h2>
+          <h2>Select Genres (up to 3)</h2>
           <MultiSelect
             options={options} // Options to display in the dropdown
             //selectedValues={selectedValue} // Preselected value to persist in dropdown
@@ -70,18 +78,23 @@ function Welcome ({ user }) {
             selectionLimit= {limitGenres}
             placeholder= 'Genre(s)'
             hidePlaceholder= {true}
+            className= 'multiselect-dropdown'
+            size= 'small'
+            rounded= 'large'
+            fillMode= 'flat'
           />
-          {userOneGenres.map((genre) => {
+          {userOneGenres.map((item) => {
             return (
-              <h1>{genre}</h1>
+              <h1>{item.name} {item.id}</h1>
             )
           })
           }
+          <div className= 'selection-button-container'>
+            <button className= 'selection-button'>Whatever {user.partner[0]} wants to watch</button>
+            <button className= 'selection-button'>Done!</button>
+          </div>
+        </div>
 
-        </div>
-        <div className= 'user-two-container'>
-          <h1>{user.partner[0]}</h1>
-        </div>
       </div>
 
       <div className= 'find-match-button-container'>
@@ -104,3 +117,7 @@ function Welcome ({ user }) {
 };
 
 export default Welcome;
+
+// <div className= 'user-two-container'>
+        //   <h1>{user.partner[0]}</h1>
+        // </div>
