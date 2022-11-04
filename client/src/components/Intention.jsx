@@ -89,7 +89,7 @@ function Intention ({ retrieveUserWatchPartner }) {
 
             <div className= 'image-container' onClick= {() => handleSelection('friend')}>
               {hoverFriend ?
-                <div className= 'intention-hover-text' onMouseLeave= {handleFriendMouse}>Hanging with Friends</div> :
+                <div className= 'intention-hover-text' onMouseLeave= {handleFriendMouse}>Friends</div> :
                 <img className= 'intention-image' src= {friend} onMouseEnter= {handleFriendMouse} />
               }
             </div>
@@ -108,7 +108,7 @@ function Intention ({ retrieveUserWatchPartner }) {
       </div>
      <div>
         <button onClick= {() => {navigate('/')}}>Back</button>
-        <Popup trigger= {openDatePopUp} setTriggerPopUp= {setOpenDatePopUp}>
+        <Popup trigger= {openDatePopUp} setTriggerPopUp= {setOpenDatePopUp} >
           <h3>Who is the Lucky Partner?</h3>
           <form onSubmit= {handleKeyboard}>
             <input type= 'text' className= 'sign-in-email-field' value= {dateName} onChange= {handleDateName}/>

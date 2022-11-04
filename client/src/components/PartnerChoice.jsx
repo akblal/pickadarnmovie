@@ -11,7 +11,6 @@ function PartnerChoice ({ user, retrievePartnerGenre }) {
 
   const navigate = useNavigate();
   const [partnerGenres, setPartnerGenres] = useState([]);
-  const [selectOneChoice, setSelectOneChoice] = useState (false);
 
   const options = [{name: 'Action', id: 28},{name: 'Adventure', id: 12}, {name: 'Animation', id: 16}, {name: 'Comedy', id: 35}, {name: 'Crime', id: 80}, {name: 'Documentary', id: 99}, , {name: 'Drama', id: 18}, {name: 'Family', id: 10571}, {name: 'Fantasy', id: 14}, {name: 'History', id: 36}, {name: 'Horror', id: 27}, {name: 'Music', id: 10402}, {name: 'Mystery', id: 9648}, {name: 'Romance', id: 10749}, {name: 'Science Fiction', id: 878}, {name: 'TV Movie', id: 10770}, {name: 'Thriller', id: 53}, {name: 'War', id: 10752}, , {name: 'Western', id: 37}];
   const limitGenres = 3;
@@ -26,7 +25,6 @@ function PartnerChoice ({ user, retrievePartnerGenre }) {
     console.log(selectedItem, 'selecteditem')
     let temp = partnerGenres.concat([genre]);
     setPartnerGenres(temp);
-    setSelectOneChoice(false)
   }
 
   const removePartnerGenreSelection = (selectedList, selectedItem) => {
@@ -40,20 +38,15 @@ function PartnerChoice ({ user, retrievePartnerGenre }) {
   const nextPage = (e) => {
     console.log(partnerGenres, 'partnergenres');
     retrievePartnerGenre(partnerGenres);
+    navigate('/')
+  }
 
-    if (partnerGenres.length > 0) {
-      navigate('/')
-    }
-    setSelectOneChoice(true);
-
+  const previousPage = () => {
+    navigate('/userchoice')
   }
 
   const noPreference = () => {
-    if (user.genre.length === 0) {
-      navigate('/userchoice');
-    } else {
-      navigate('/');
-    }
+    navigate('/');
   }
 
   return (
@@ -64,11 +57,9 @@ function PartnerChoice ({ user, retrievePartnerGenre }) {
       </div>
       <div className= 'user-information-containers'>
         <div className= 'user-one-container'>
+          <button onClick= {previousPage} className= 'back-button'>Back</button>
           <h1>{partnerName}</h1>
           <h2>Select Genres (up to 3)</h2>
-          {selectOneChoice &&
-            <h4>PICK ONE or Choose "Whatever {user.email} wants to watch"</h4>
-          }
           <MultiSelect
             options={options} // Options to display in the dropdown
             // selectedValues={selectedValue} // Preselected value to persist in dropdown
@@ -90,8 +81,11 @@ function PartnerChoice ({ user, retrievePartnerGenre }) {
           })
           }
           <div className= 'selection-button-container'>
-            <button className= 'selection-button' onClick= {noPreference}>Whatever {user.firstName} {user.lastName} wants to watch</button>
-            <button className= 'selection-button' onClick= {nextPage}>Find Match</button>
+            {user.genre.length === 0 ?
+              <h3>{user.firstName} has no preference. Please help make a decision.</h3> :
+              <button className= 'selection-button' onClick= {noPreference}>Whatever {user.firstName} {user.lastName} wants to watch</button>
+            }
+            <button className= 'selection-button' onClick= {nextPage} disabled= {partnerGenres.length === 0} >Find Match</button>
           </div>
         </div>
       </div>

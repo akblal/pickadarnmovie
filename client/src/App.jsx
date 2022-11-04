@@ -18,7 +18,10 @@ function App (props) {
   const [pageNumber, setPageNumber] = useState('sign-in');
   const [user, setUser] = useState({});
 
+  const theme = 'dark';
+
   useEffect(() => {
+    document.body.className = theme;
     user.genre = [];
     user.partnerGenre = [];
     setUser(user)
@@ -62,7 +65,7 @@ function App (props) {
   }
 
   return (
-    <div>
+    <div className= {theme}>
       <Routes>
         <Route path= '/' element= {<SignIn retrieveUserEmail= {retrieveUserEmail}/>} />
         <Route path= 'password' element= {<Password user= {user}/>} />

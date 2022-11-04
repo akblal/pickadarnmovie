@@ -1,10 +1,18 @@
+#root {
+  font-family: 'Ubuntu Mono', monospace;
+}
+
+.dark {
+  background-color: black;
+  color: rgb(192, 192, 236);
+}
+
 .center-screen {
   position: absolute;
   top: 50%;
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
-  border-color: black;
 }
 
 .sign-in-container,
@@ -13,7 +21,7 @@
 .intention-container{
   border: solid;
   border-width: 1px;
-  border-color: black;
+  border-color: rgb(192, 192, 236);;
   border-radius: 5%;
   padding-top: 70px;
   padding-bottom: 70px;
@@ -26,6 +34,7 @@
 .sign-in-logo,
 .password-page-logo {
   margin-bottom: 60px;;
+  font-size: 28px;
 }
 
 .sign-in-title,
@@ -34,12 +43,18 @@
   margin-bottom: 40px;
 }
 
+.sign-in-title,
+.passord-page-title {
+  font-size: 30px;
+  font-weight: bold;
+}
+
 .sign-in-email-field,
 .user-creation-email-field,
 .user-creation-password-field,
 .password-page-password-field,
 .icon-and-email-container {
-  width: 392px;
+  width: 365px;
 }
 
 .sign-in-continue-button,
@@ -50,7 +65,32 @@
 .intention-button,
 .selection-button {
   width: 400px;
+  border-radius: 30px;
+  background-color: rgb(120, 120, 200);
+  color: black;
 }
+
+.sign-in-continue-button:hover,
+.sign-in-create-user-button:hover,
+.user-creation-create-button:hover,
+.password-continue-button:hover,
+.password-auth-code:hover,
+.intention-button:hover,
+.selection-button:hover {
+  cursor: pointer;
+  background-color: rgb(139, 139, 206);
+}
+
+.sign-in-continue-button:active,
+.sign-in-create-user-button:active,
+.user-creation-create-button:active,
+.password-continue-button:active,
+.password-auth-code:active,
+.intention-button:active,
+.selection-button:active {
+  transform: scale(98%);
+}
+
 .sign-in-continue-button,
 .sign-in-create-user-button,
 .sign-in-email-field,
@@ -64,7 +104,22 @@
 .password-auth-code,
 .selection-button{
   height: 50px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.sign-in-email-field {
+  margin-bottom: 50px;
+}
+
+.sign-in-email-field,
+.user-creation-first-name-field,
+.user-creation-last-name-field,
+.user-creation-email-field,
+.user-creation-password-field,
+.password-page-password-field {
+  border-radius: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .sign-in-buttons-container,
@@ -101,6 +156,10 @@
   justify-content: center;
 }
 
+.sign-in-privacy-policy-container {
+  margin-top: 40px;
+}
+
 .user-creation-name-fields-container {
   display: flex;
   justify-content: space-evenly;
@@ -109,7 +168,7 @@
 
 .user-creation-first-name-field,
 .user-creation-last-name-field {
-  width: 181px;
+  width: 155px;
 }
 
 .user-creation-first-name-container {
@@ -199,26 +258,6 @@
   height: 460px;
 }
 
-/* .intention-button-list {
-  display: flex;
-  flex-direction: column;
-}
-
-.intention-button {
-  display: flex;
-  background: lightgrey;
-  margin-bottom: 40px;
-  height: 50px;
-  border: 2px solid blue;
-  border-radius: 5px;
-}
-
-.intention-button:hover,
-.intention-button:active {
-  background: white;
-  transform: scale(105%);
-} */
-
 .intention-title {
   margin-bottom: 40px;
 }
@@ -240,6 +279,11 @@
   width: 155px;
   border: 3px solid blue;
   padding: 10px;
+  border-radius: 10px;
+}
+
+.intention-hover-text {
+  font-size: 25px;
 }
 
 .image-container:hover {
@@ -254,8 +298,8 @@
 
 .intention-hover-text {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
 .popup {
@@ -303,9 +347,30 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  bottom: 200px;
+  bottom: 225px;
 }
 
-.multiselect-dropdown {
+.back-button {
+  position: relative;
+}
 
+.text-field {
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+
+.privacy-policy-text {
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.privacy-policy-text:hover {
+  transform: scale(105%);
+}
+
+.privacy-policy-text:active {
+  transform: scale(99%);
 }

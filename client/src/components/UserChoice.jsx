@@ -16,7 +16,6 @@ function UserChoice ({ user, retrieveUserName, retrieveUserGenre }) {
   const [userOneGenres, setUserOneGenres] = useState([]);
   const [userTwoFirstName, setUserTwoFirstName] = useState('');
   const [userTwoLastName, setUserTwoLastName] = useState('');
-  const [selectOneChoice, setSelectOneChoice] = useState (false);
 
   const options = [{name: 'Action', id: 28},{name: 'Adventure', id: 12}, {name: 'Animation', id: 16}, {name: 'Comedy', id: 35}, {name: 'Crime', id: 80}, {name: 'Documentary', id: 99}, , {name: 'Drama', id: 18}, {name: 'Family', id: 10571}, {name: 'Fantasy', id: 14}, {name: 'History', id: 36}, {name: 'Horror', id: 27}, {name: 'Music', id: 10402}, {name: 'Mystery', id: 9648}, {name: 'Romance', id: 10749}, {name: 'Science Fiction', id: 878}, {name: 'TV Movie', id: 10770}, {name: 'Thriller', id: 53}, {name: 'War', id: 10752}, , {name: 'Western', id: 37}];
   const limitGenres = 3;
@@ -51,7 +50,6 @@ function UserChoice ({ user, retrieveUserName, retrieveUserGenre }) {
     console.log(selectedItem, 'selecteditem')
     let temp = userOneGenres.concat([genre]);
     setUserOneGenres(temp);
-    setSelectOneChoice(false)
   }
 
   const removeUserOneGenreSelection = (selectedList, selectedItem) => {
@@ -65,12 +63,7 @@ function UserChoice ({ user, retrieveUserName, retrieveUserGenre }) {
   const nextPage = (e) => {
     console.log(userOneGenres, 'usergenres');
     retrieveUserGenre(userOneGenres);
-    if (userOneGenres.length > 0) {
-      navigate('/partnerchoice');
-    }
-
-    setSelectOneChoice(true);
-
+    navigate('/partnerchoice');
   }
 
   const noPreference = () => {
@@ -88,9 +81,6 @@ function UserChoice ({ user, retrieveUserName, retrieveUserGenre }) {
         <div className= 'user-one-container'>
           <h1>{userOneFirstName} {userOneLastName}</h1>
           <h2>Select Genres (up to 3)</h2>
-          {selectOneChoice &&
-            <h4>PICK ONE or Choose "Whatever {user.partner[0]} wants to watch"</h4>
-          }
           <MultiSelect
             options={options} // Options to display in the dropdown
             // selectedValues={selectedValue} // Preselected value to persist in dropdown
@@ -113,7 +103,7 @@ function UserChoice ({ user, retrieveUserName, retrieveUserGenre }) {
           }
           <div className= 'selection-button-container'>
             <button className= 'selection-button' onClick= {noPreference}>Whatever {user.partner[0]} wants to watch</button>
-            <button className= 'selection-button' onClick= {nextPage}>Done!</button>
+            <button className= 'selection-button' disabled= {userOneGenres.length === 0} onClick= {nextPage}>Done!</button>
           </div>
         </div>
 

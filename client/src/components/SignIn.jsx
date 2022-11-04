@@ -46,12 +46,12 @@ function SignIn ({ retrieveUserEmail }) {
   return (
     <div className= 'center-screen'>
       <div className= 'sign-in-container'>
-        <h1 className= 'sign-in-logo'>pickadamnmovie</h1>
-        <h1 className= 'sign-in-title'>Sign Into PickaDamnMovie</h1>
+        <div className= 'sign-in-logo'>pickadamnmovie</div>
+        <div className= 'sign-in-title'>Sign Into PickaDamnMovie</div>
         <div className= 'sign-in-email-container'>
           {isEmailFound ?
-            <span>Email:</span> :
-            <span>Email does not exist in our database. Try creating a new account or make sure it is spelled correctly.</span>
+            <div className= 'text-field'>Email:</div> :
+            <div className= 'text-field'>Email does not exist in our database. Try creating a new account or make sure it is spelled correctly.</div>
           }
           <form onSubmit= {handleEmailKeyboard}>
             <input type= 'text' className= 'sign-in-email-field' value= {email} onChange= {handleEmail}/>
@@ -62,7 +62,7 @@ function SignIn ({ retrieveUserEmail }) {
           <button onClick= {confirmNewUser} className= 'sign-in-create-user-button'>Create Account</button>
         </div>
         <div className= 'sign-in-privacy-policy-container'>
-          <h3>Privacy Policy</h3>
+          <div className= 'privacy-policy-text'>Privacy Policy</div>
         </div>
       </div>
     </div>
