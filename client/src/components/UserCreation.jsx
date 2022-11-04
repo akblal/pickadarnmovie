@@ -57,7 +57,7 @@ function UserCreation ({ retrieveUserEmail }) {
           lastName: lastName,
         })
         .then (() => {
-          navigate('/welcome');
+          navigate('/userchoice');
         })
       } catch (error) {
         console.log (error.message);

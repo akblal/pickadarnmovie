@@ -7,56 +7,53 @@ import { faCircleUser} from '@fortawesome/free-solid-svg-icons';
 
 import MultiSelect from 'multiselect-react-dropdown';
 
-
-function Welcome ({ user }) {
+function PartnerChoice ({ user, retrievePartnerGenre }) {
 
   const navigate = useNavigate();
-  const [userOneFirstName, setUserOneFirstName] = useState('');
-  const [userOneLastName, setUserOneLastName] = useState('');
-  const [userOneGenres, setUserOneGenres] = useState([]);
-  const [userTwoFirstName, setUserTwoFirstName] = useState('');
-  const [userTwoLastName, setUserTwoLastName] = useState('');
+  const [partnerGenres, setPartnerGenres] = useState([]);
+  const [selectOneChoice, setSelectOneChoice] = useState (false);
 
   const options = [{name: 'Action', id: 28},{name: 'Adventure', id: 12}, {name: 'Animation', id: 16}, {name: 'Comedy', id: 35}, {name: 'Crime', id: 80}, {name: 'Documentary', id: 99}, , {name: 'Drama', id: 18}, {name: 'Family', id: 10571}, {name: 'Fantasy', id: 14}, {name: 'History', id: 36}, {name: 'Horror', id: 27}, {name: 'Music', id: 10402}, {name: 'Mystery', id: 9648}, {name: 'Romance', id: 10749}, {name: 'Science Fiction', id: 878}, {name: 'TV Movie', id: 10770}, {name: 'Thriller', id: 53}, {name: 'War', id: 10752}, , {name: 'Western', id: 37}];
   const limitGenres = 3;
-
-  useEffect (() => {
-    let email = user.email;
-    axios.get ('/getUser', {
-      params: {
-        email: email
-      }
-    })
-      .then((results) => {
-        setUserOneFirstName(results.data.firstname);
-        setUserOneLastName(results.data.lastname);
-      })
-      .catch ((err) => {
-        console.log(err);
-      })
-  }, [])
+  const partnerName = user.partner[0];
 
   const backToHome = (e) => {
     navigate('/')
   }
 
-  const findMatch = (e) => {
-    console.log ('find match!')
-  }
-
-  const addUserOneGenreSelection = (selectedList, selectedItem) => {
+  const addPartnerGenreSelection = (selectedList, selectedItem) => {
     let genre = selectedItem;
     console.log(selectedItem, 'selecteditem')
-    let temp = userOneGenres.concat([genre]);
-    setUserOneGenres(temp);
+    let temp = partnerGenres.concat([genre]);
+    setPartnerGenres(temp);
+    setSelectOneChoice(false)
   }
 
-  const removeUserOneGenreSelection = (selectedList, selectedItem) => {
+  const removePartnerGenreSelection = (selectedList, selectedItem) => {
     let temp = [];
     for (let i = 0; i < selectedList.length; i++) {
       temp.push(selectedList[i]);
     }
-    setUserOneGenres(temp);
+    setPartnerGenres(temp);
+  }
+
+  const nextPage = (e) => {
+    console.log(partnerGenres, 'partnergenres');
+    retrievePartnerGenre(partnerGenres);
+
+    if (partnerGenres.length > 0) {
+      navigate('/')
+    }
+    setSelectOneChoice(true);
+
+  }
+
+  const noPreference = () => {
+    if (user.genre.length === 0) {
+      navigate('/userchoice');
+    } else {
+      navigate('/');
+    }
   }
 
   return (
@@ -67,13 +64,16 @@ function Welcome ({ user }) {
       </div>
       <div className= 'user-information-containers'>
         <div className= 'user-one-container'>
-          <h1>{userOneFirstName} {userOneLastName}</h1>
+          <h1>{partnerName}</h1>
           <h2>Select Genres (up to 3)</h2>
+          {selectOneChoice &&
+            <h4>PICK ONE or Choose "Whatever {user.email} wants to watch"</h4>
+          }
           <MultiSelect
             options={options} // Options to display in the dropdown
-            //selectedValues={selectedValue} // Preselected value to persist in dropdown
-            onSelect={addUserOneGenreSelection} // Function will trigger on select event
-            onRemove={removeUserOneGenreSelection} // Function will trigger on remove event
+            // selectedValues={selectedValue} // Preselected value to persist in dropdown
+            onSelect={addPartnerGenreSelection} // Function will trigger on select event
+            onRemove={removePartnerGenreSelection} // Function will trigger on remove event
             displayValue="name" // Property name to display in the dropdown options
             selectionLimit= {limitGenres}
             placeholder= 'Genre(s)'
@@ -83,41 +83,21 @@ function Welcome ({ user }) {
             rounded= 'large'
             fillMode= 'flat'
           />
-          {userOneGenres.map((item) => {
+          {partnerGenres.map((item) => {
             return (
               <h1>{item.name} {item.id}</h1>
             )
           })
           }
           <div className= 'selection-button-container'>
-            <button className= 'selection-button'>Whatever {user.partner[0]} wants to watch</button>
-            <button className= 'selection-button'>Done!</button>
+            <button className= 'selection-button' onClick= {noPreference}>Whatever {user.firstName} {user.lastName} wants to watch</button>
+            <button className= 'selection-button' onClick= {nextPage}>Find Match</button>
           </div>
         </div>
-
       </div>
-
-      <div className= 'find-match-button-container'>
-        <button onClick= {findMatch}>Find Match</button>
-      </div>
-      <div className= 'matched-movies-container'>
-        Common Movies
-      </div>
-      <div className= 'user-one-movies-container'>
-        User One Movies
-      </div>
-      <div className= 'user-one-movies-container'>
-        User Two Movies
-      </div>
-      <button onClick= {backToHome}>Home</button>
-      <p>This product uses the TMDB API but is not endorsed or certified by TMDB.</p>
-    </div>
+     </div>
   )
 
 };
 
-export default Welcome;
-
-// <div className= 'user-two-container'>
-        //   <h1>{user.partner[0]}</h1>
-        // </div>
+export default PartnerChoice;

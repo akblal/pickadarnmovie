@@ -57,7 +57,7 @@ function Intention ({ retrieveUserWatchPartner }) {
     console.log (dateName)
     setOpenDatePopUp(false);
     retrieveUserWatchPartner([dateName]);
-    navigate('/welcome')
+    navigate('/userchoice')
   }
 
   const handleFriendName =  (e) => {
