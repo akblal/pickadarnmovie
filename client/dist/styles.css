@@ -4,7 +4,7 @@
 
 .dark {
   background-color: black;
-  color: rgb(192, 192, 236);
+  color: rgb(233, 233, 240);
 }
 
 .center-screen {
@@ -31,6 +31,19 @@
   height: 460px;
 }
 
+.user-creation-container {
+  border: solid;
+  border-width: 1px;
+  border-color: rgb(192, 192, 236);;
+  border-radius: 5%;
+  padding-top: 40px;
+  padding-bottom: 100px;
+  padding-left: 50px;
+  padding-right: 50px;
+  width: 403px;
+  height: 460px;
+}
+
 .sign-in-logo,
 .password-page-logo {
   margin-bottom: 60px;;
@@ -44,9 +57,14 @@
 }
 
 .sign-in-title,
+.user-creation-title,
 .passord-page-title {
   font-size: 30px;
   font-weight: bold;
+}
+
+.user-creation-title {
+  margin-bottom: 15px;
 }
 
 .sign-in-email-field,
@@ -68,6 +86,9 @@
   border-radius: 30px;
   background-color: rgb(120, 120, 200);
   color: black;
+  font-family: 'Ubuntu Mono', monospace;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .sign-in-continue-button:hover,
@@ -107,8 +128,17 @@
   margin-bottom: 20px;
 }
 
+.user-creation-password-field {
+  margin-bottom: 30px;
+}
+
 .sign-in-email-field {
   margin-bottom: 50px;
+  background-color: black;
+  color: rgb(120, 120, 200);
+  border-color: rgb(120, 120, 200);
+  border-width: 4px;
+  font-size: 18px;
 }
 
 .sign-in-email-field,
@@ -120,6 +150,11 @@
   border-radius: 10px;
   padding-left: 15px;
   padding-right: 15px;
+  background-color: black;
+  color: rgb(120, 120, 200);
+  border-color: rgb(120, 120, 200);
+  border-width: 4px;
+  font-size: 18px;
 }
 
 .sign-in-buttons-container,
@@ -180,7 +215,7 @@
 }
 
 .user-creation-certification-container {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   display: flex;
 }
 
@@ -354,10 +389,26 @@
   position: relative;
 }
 
-.text-field {
+.text-field,
+.error-text-field {
   font-weight: bold;
   margin-bottom: 5px;
   font-size: 18px;
+}
+
+.text-field-checkbox,
+.error-field-checkbox {
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 13px;
+}
+
+.error-text-field {
+  color: rgb(199, 98, 98);
+}
+
+.error-field-checkbox {
+  color: rgb(241, 160, 179);
 }
 
 .privacy-policy-text {
@@ -374,3 +425,29 @@
 .privacy-policy-text:active {
   transform: scale(99%);
 }
+
+.user-creation-checkbox-container {
+  margin-right: 7px;
+}
+
+.user-creation-checkbox {
+  cursor: pointer;
+}
+
+.user-creation-back-button-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.user-creation-back-button {
+  font-size: 50px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.user-creation-back-button:hover {
+  cursor: pointer;
+  transform: scale(95%);
+}
+
+

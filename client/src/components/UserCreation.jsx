@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../the-firebase-config.js';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 function UserCreation ({ retrieveUserEmail }) {
 
@@ -83,19 +85,17 @@ function UserCreation ({ retrieveUserEmail }) {
   return (
     <div className= 'center-screen'>
       <div className= 'user-creation-container'>
-
         <div className= 'user-creation-back-button-container'>
-          <button className= 'user-creation-back-button' onClick= {handleBack}>Back</button>
+          <FontAwesomeIcon icon= {faCircleArrowLeft} className= 'user-creation-back-button' onClick= {handleBack}/>
         </div>
-
-        <h1 className= 'user-creation-title'>Create An Account</h1>
+        <div className= 'user-creation-title'>Create An Account</div>
         <div className= 'user-creation-fields-container'>
 
           <div className= 'user-creation-name-fields-container'>
             <div className= 'user-creation-first-name-container'>
               {missingFirstName ?
-                <div className= 'user-creation-first-name-title'>Error: Enter First Name</div> :
-                <div className= 'user-creation-first-name-title'>First Name</div>
+                <div className= 'user-creation-first-name-title error-text-field'>Enter First Name</div> :
+                <div className= 'user-creation-first-name-title text-field'>First Name</div>
               }
               <div className= 'user-creation-first-name-field-container'>
                 <form onSubmit= {handleKeyboard}>
@@ -105,8 +105,8 @@ function UserCreation ({ retrieveUserEmail }) {
             </div>
             <div className= 'user-creation-last-name-container'>
             {missingLastName ?
-              <div className= 'user-creation-last-name-title'>Error: Enter Last Name</div> :
-              <div className= 'user-creation-last-name-title'>Last Name</div>
+              <div className= 'user-creation-last-name-title error-text-field'>Enter Last Name</div> :
+              <div className= 'user-creation-last-name-title text-field'>Last Name</div>
             }
               <div className= 'user-creation-last-name-field-container'>
                 <form onSubmit= {handleKeyboard}>
@@ -117,7 +117,7 @@ function UserCreation ({ retrieveUserEmail }) {
           </div>
 
           <div className= 'user-creation-email-container'>
-            <div className= 'user-creation-email-title'>
+            <div className= 'user-creation-email-title text-field'>
               Email:
             </div>
             <div className= 'user-creation-email-field-container'>
@@ -128,7 +128,7 @@ function UserCreation ({ retrieveUserEmail }) {
           </div>
 
           <div className= 'user-creation-password-container'>
-            <div className= 'user-creation-password-title'>
+            <div className= 'user-creation-password-title text-field'>
               Password:
             </div>
             <div className= 'user-creation-password-field-container'>
@@ -143,10 +143,10 @@ function UserCreation ({ retrieveUserEmail }) {
               <input type= 'checkbox' checked= {checked} onChange= {handleChecked} className= 'user-creation-checkbox'></input>
             </div>
             {checked ?
-              <div className= 'user-creation-certification-message' >
+              <div className= 'user-creation-certification-message text-field-checkbox' >
               I certify that I am 18 years of age or older, I agree to the User Agreement, and I have read the Privacy Policy.
             </div> :
-            <div className= 'user-creation-certification-message' style= {{fontWeight:'bold'}}>
+            <div className= 'user-creation-certification-message error-field-checkbox' style= {{fontWeight:'bold'}}>
               I certify that I am 18 years of age or older, I agree to the User Agreement, and I have read the Privacy Policy.
             </div>
             }
@@ -155,6 +155,8 @@ function UserCreation ({ retrieveUserEmail }) {
           <div className= 'user-creation-create-button-container'>
             <button className= 'user-creation-create-button' onClick= {registerUser}>Create Free Account</button>
           </div>
+
+
 
         </div>
       </div>

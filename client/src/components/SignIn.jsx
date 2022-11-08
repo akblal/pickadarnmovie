@@ -51,7 +51,7 @@ function SignIn ({ retrieveUserEmail }) {
         <div className= 'sign-in-email-container'>
           {isEmailFound ?
             <div className= 'text-field'>Email:</div> :
-            <div className= 'text-field'>Email does not exist in our database. Try creating a new account or make sure it is spelled correctly.</div>
+            <div className= 'error-text-field'>Email does not exist in our database. </div>
           }
           <form onSubmit= {handleEmailKeyboard}>
             <input type= 'text' className= 'sign-in-email-field' value= {email} onChange= {handleEmail}/>
